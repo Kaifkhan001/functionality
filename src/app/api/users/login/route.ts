@@ -41,7 +41,7 @@ export async function POST(request: NextRequest){
          response.cookies.set("token", token, {
            httpOnly: true,
            secure: process.env.NODE_ENV === "production",
-           sameSite: "strict", 
+           sameSite: "none", 
            maxAge: 3600000,
          });
        }
@@ -49,7 +49,7 @@ export async function POST(request: NextRequest){
         response.cookies.set("userInfo", userInfoToken, {
           httpOnly: true,
           secure: process.env.NODE_ENV === "production",
-          sameSite: "strict",
+          sameSite: "none",
           maxAge: 3600000,
         });
     }
