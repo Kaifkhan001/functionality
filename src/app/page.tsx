@@ -1,6 +1,38 @@
+"use client"
 import Image from "next/image";
+import { useEffect } from "react";
+import useStore from '@/helpers/store.js'
+import axios from "axios";
+
+
+
 
 export default function Home() {
+  const { toggleLogg, isLogged } = useStore();
+
+  
+  useEffect(() => {
+  const fetchData = async() => {
+     try {
+       const response = await axios.get("/api/user/check-token");
+       if (
+         response.status === 500 ||
+         response.status === 403 ||
+         response.status === 404
+       ) {
+         toggleLogg(false);
+       } else {
+         toggleLogg(true);
+       }
+     } catch (error) {
+       console.log("Error in main Page:-", error);
+     }
+     console.log("isLogged: -",isLogged);
+  }
+  
+  fetchData();
+  }, [isLogged,toggleLogg])
+  
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
