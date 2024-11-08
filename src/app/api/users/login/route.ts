@@ -30,6 +30,8 @@ export async function POST(request: NextRequest){
         const token = await user.generateAccessToken();
         const userInfoToken = await user.generateUserInfoToken();
 
+        console.log("UserInforToken:- ", userInfoToken);
+
         const response = NextResponse.json({
             message: "User logged in successfully",
             success: true
