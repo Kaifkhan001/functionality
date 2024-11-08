@@ -2,7 +2,7 @@
 import jwt from 'jsonwebtoken'
 import { NextResponse } from 'next/server'
 
-export async function handler(req:any){
+export async function GET(req:any){
 
    const token = req.cookies.get("token");
 
