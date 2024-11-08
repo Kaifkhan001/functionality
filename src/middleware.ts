@@ -12,16 +12,16 @@ export async function middleware(request: NextRequest) {
    
    try {
      if(isAuthPage && token){
-      return NextResponse.redirect(new URL("/dashboard", request.url));
+      return NextResponse.rewrite(new URL("/dashboard", request.url));
      }
     else if (!token && !isAuthPage) {
        console.log("missing tooken");
-       return NextResponse.redirect(new URL("/login", request.url));
+       return NextResponse.rewrite(new URL("/login", request.url));
      }
     } catch (error) {
         console.log("Token val:- ", token);
         console.error("Token verification failed:", error);
-        return NextResponse.redirect(new URL("/login", request.url));
+        return NextResponse.rewrite(new URL("/login", request.url));
 
     }
 
