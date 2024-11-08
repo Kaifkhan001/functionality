@@ -37,7 +37,7 @@ userSchema.methods.generateAccessToken = function (){
         return jwt.sign(
           { id: this._id, email: this.email },
           process.env.JWT_TOKEN_SECRET!,
-          { expiresIn: process.env.JWT_TOKEN_EXPIRY }
+          { expiresIn: "3h" }
         );
     } catch (error) {
         console.log("error while generating to Access token",error);
