@@ -51,7 +51,7 @@ userSchema.methods.generateUserInfoToken = function(){
           { id: this._id, fullName: this.fullName, email: this.email },
           process.env.JWT_TOKEN_SECRET!,
           {
-            expiresIn: process.env.JWT_TOKEN_EXPIRY,
+            expiresIn: "3h",
           }
         );
     } catch (error) {
